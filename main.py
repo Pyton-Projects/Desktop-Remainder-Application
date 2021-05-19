@@ -7,7 +7,6 @@ from ttkthemes import ThemedTk,THEMES
 from datetime import datetime, timedelta
 import random
 import winsound
-facts='The world’s oldest toy is a stick','Moon flowers actually bloom in response to the moon','The biggest Dalmatian litter ever was 18 puppies','Sea otters hold hands while they sleep','The largest sand castle in the world measured 54 feet high','There are over 10 holidays that celebrate chocolate','Chocolate is (kinda) a fruit','The voices of Mickey and Minnie Mouse got married in real life','Lazy people actually think more','Fall leaf colors are present year-round','Two Buck Chuck once won a wine competition','The way you eat Oreos says something about your personality','The Queen drinks champagne almost every day','The moon has its own time zones','Americans eat 100 acres of pizza a day','Smiling is actually contagious','A team of six women programmed the first digital computer','Baby elephants suck their trunks for comfort','''There's a 107-acre forest made up of a single tree''','Tomatoes are both a fruit and a vegetable','''There's an official rock paper scissors league'''
 def x():
 	question=messagebox.askquestion('Message','Are You Sure To Quit? Remainder Will Be Disabled If You Quit')
 	if question=='yes':
@@ -18,18 +17,18 @@ def notification_():
 	try:
 		notification.notify(
             	title = "Your Remainder!",
-            	message=F"""{task_value_}Do You Know? 
-{random.choice(facts)} Thats a Fact!""")
+            	message=F"""{task_value_}""")
 		print('Here Is Your Remainder!')
+		print(f'The Time Is Now {updated} Your Remainder Time!')
 		frequency = 2000
 		duration = 2000 
 		winsound.Beep(frequency, duration)
-
 	except Exception:
 		messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
 def info():
 	messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
 def Remainder():
+	global updated
 	print('''Remainder Is Running.... Please Don't Quit The Application. ''')
 	formula_to_find_seconds=sec_value.get()*1000
 	formula_to_find_minutes=min_value.get()*60000
@@ -47,7 +46,7 @@ def task_value():
 		set_.config(command=info)
 	if len(task.get("1.0", "end-1c")) != 0:
 		messagebox.showinfo('Message','Task Set Suceesfully! Now Go And Set Your Remainder!')
-		messagebox.showinfo('Use Full Tip!','Tip-Click On Set Timer Button To Update Task!')
+		print('Tip-Click On Set Timer Button To Update Task!')
 		set_.config(command=Remainder)
 		# create a menu 
 root=ThemedTk(themebg=True)
@@ -86,4 +85,4 @@ set_task=ttk.Button(root,text='Set Task',command=task_value)
 set_task.place(x=385,y=340,)
 root.mainloop()
 # End!
-# push this one.
+

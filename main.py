@@ -46,7 +46,8 @@ def task_value():
 		question=messagebox.showinfo('Message','Please Put Something For Your Task!')
 		set_.config(command=info)
 	if len(task.get("1.0", "end-1c")) != 0:
-		messagebox.showinfo('Message','Task Set Suceesfully! Now Go And Set Your Remainder! ')
+		messagebox.showinfo('Message','Task Set Suceesfully! Now Go And Set Your Remainder!')
+		messagebox.showinfo('Use Full Tip!','Tip-Click On Set Timer Button To Update Task!')
 		set_.config(command=Remainder)
 		# create a menu 
 root=ThemedTk(themebg=True)
@@ -85,3 +86,4 @@ set_task=ttk.Button(root,text='Set Task',command=task_value)
 set_task.place(x=385,y=340,)
 root.mainloop()
 # End!
+# push this one.

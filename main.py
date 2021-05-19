@@ -25,9 +25,10 @@ def notification_():
 		frequency = 2000
 		duration = 2000 
 		winsound.Beep(frequency, duration)
+		root.deiconify()
 	except Exception:
 		messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
-    
+		root.deiconify()
 def timer():
 	if len(task.get("1.0", "end-1c")) !=0:
 		formula_to_find_seconds=sec_value.get()*1000
@@ -35,6 +36,7 @@ def timer():
 		formula_to_find_hours=hour_value.get()*3600000
 		time=formula_to_find_seconds+formula_to_find_minutes+formula_to_find_hours
 		root.after(time,notification_)
+		root.withdraw()
 def task_value():
 	global task_value_
 	task_value_=task.get(1.0,END)

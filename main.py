@@ -85,11 +85,3 @@ set_task=ttk.Button(root,text='Set Task',command=task_value)
 set_task.place(x=385,y=340,)
 root.mainloop()
 # End!
-# set task to do project
-# a software that can get the rgb color value form a int
-# WHY SUMBLIME TEXT SHORCUT RuN SHORCUT IS Ctrl+B?
-# answer-->Ctrl+c copy code from stackoverflow # ctrl+v paste it to text editor then press ctrl+b to execute it...!
-# notifaction type
-# set task to do progject
-# a software that can get the color value form a int
-# psuh this one bug fixed!

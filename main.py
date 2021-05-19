@@ -3,17 +3,15 @@ from tkinter import ttk
 from tkinter.font import Font
 from tkinter import messagebox
 from plyer import*
-import time as ee
 from ttkthemes import ThemedTk,THEMES
-import datetime
-import sys
+from datetime import datetime, timedelta
 import random
 import winsound
 facts='The world’s oldest toy is a stick','Moon flowers actually bloom in response to the moon','The biggest Dalmatian litter ever was 18 puppies','Sea otters hold hands while they sleep','The largest sand castle in the world measured 54 feet high','There are over 10 holidays that celebrate chocolate','Chocolate is (kinda) a fruit','The voices of Mickey and Minnie Mouse got married in real life','Lazy people actually think more','Fall leaf colors are present year-round','Two Buck Chuck once won a wine competition','The way you eat Oreos says something about your personality','The Queen drinks champagne almost every day','The moon has its own time zones','Americans eat 100 acres of pizza a day','Smiling is actually contagious','A team of six women programmed the first digital computer','Baby elephants suck their trunks for comfort','''There's a 107-acre forest made up of a single tree''','Tomatoes are both a fruit and a vegetable','''There's an official rock paper scissors league'''
 def x():
 	question=messagebox.askquestion('Message','Are You Sure To Quit? Timer Will Be Disabled If You Quit')
 	if question=='yes':
-		sys.exit()
+		exit()
 	if question!='no':
 		None
 def notification_():
@@ -25,18 +23,23 @@ def notification_():
 		frequency = 2000
 		duration = 2000 
 		winsound.Beep(frequency, duration)
-		root.deiconify()
 	except Exception:
 		messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
-		root.deiconify()
+def clock():
+	'''put the clock time to notifaction time!'''
 def timer():
 	if len(task.get("1.0", "end-1c")) !=0:
+		updated = ( datetime.now() +timedelta(hours=int(hour_value.get()),minutes=int(min_value.get()),seconds=sec_value.get())).strftime('%r')
+		time_in_right_fromats=datetime.now().strftime('%r')
+		messagebox.showinfo(f'Message',f'The Time Set At {time_in_right_fromats} And You Will Get A Notifaction At {updated}')
+
 		formula_to_find_seconds=sec_value.get()*1000
 		formula_to_find_minutes=min_value.get()*60000
 		formula_to_find_hours=hour_value.get()*3600000
 		time=formula_to_find_seconds+formula_to_find_minutes+formula_to_find_hours
 		root.after(time,notification_)
-		root.withdraw()
+
+
 def task_value():
 	global task_value_
 	task_value_=task.get(1.0,END)

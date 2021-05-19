@@ -9,7 +9,7 @@ import random
 import winsound
 facts='The world’s oldest toy is a stick','Moon flowers actually bloom in response to the moon','The biggest Dalmatian litter ever was 18 puppies','Sea otters hold hands while they sleep','The largest sand castle in the world measured 54 feet high','There are over 10 holidays that celebrate chocolate','Chocolate is (kinda) a fruit','The voices of Mickey and Minnie Mouse got married in real life','Lazy people actually think more','Fall leaf colors are present year-round','Two Buck Chuck once won a wine competition','The way you eat Oreos says something about your personality','The Queen drinks champagne almost every day','The moon has its own time zones','Americans eat 100 acres of pizza a day','Smiling is actually contagious','A team of six women programmed the first digital computer','Baby elephants suck their trunks for comfort','''There's a 107-acre forest made up of a single tree''','Tomatoes are both a fruit and a vegetable','''There's an official rock paper scissors league'''
 def x():
-	question=messagebox.askquestion('Message','Are You Sure To Quit? Timer Will Be Disabled If You Quit')
+	question=messagebox.askquestion('Message','Are You Sure To Quit? Remainder Will Be Disabled If You Quit')
 	if question=='yes':
 		exit()
 	if question!='no':
@@ -29,7 +29,7 @@ def notification_():
 		messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
 def info():
 	messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
-def timer():
+def Remainder():
 	print('''Remainder Is Running.... Please Don't Quit The Application. ''')
 	formula_to_find_seconds=sec_value.get()*1000
 	formula_to_find_minutes=min_value.get()*60000
@@ -46,8 +46,8 @@ def task_value():
 		question=messagebox.showinfo('Message','Please Put Something For Your Task!')
 		set_.config(command=info)
 	if len(task.get("1.0", "end-1c")) != 0:
-		messagebox.showinfo('Message','Task Set Suceesfully! Now Go And Set Your Timer! ')
-		set_.config(command=timer)
+		messagebox.showinfo('Message','Task Set Suceesfully! Now Go And Set Your Remainder! ')
+		set_.config(command=Remainder)
 		# create a menu 
 root=ThemedTk(themebg=True)
 root.set_theme('arc')
@@ -79,8 +79,8 @@ start_min['state']='readonly'
 start_sec=ttk.Spinbox(root,from_=0,to=59,width=3,textvariable=sec_value,font=Font(root,family='times',size=15))
 start_sec.place(x=400,y=140)
 start_sec['state']='readonly'
-set_=ttk.Button(root,text='Set Timer',command=info)
-set_.place(x=385,y=180)
+set_=ttk.Button(root,text='Set Remainder',command=info)
+set_.place(x=375,y=180)
 set_task=ttk.Button(root,text='Set Task',command=task_value)
 set_task.place(x=385,y=340,)
 root.mainloop()

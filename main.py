@@ -1,33 +1,4 @@
-Skip to content
-Search or jump to…
 
-Pulls
-Issues
-Marketplace
-Explore
- 
-@Pyton-Projects 
-Pyton-Projects
-/
-My-All-Tkinter-Projects
-1
-10
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-More
-My-All-Tkinter-Projects/remainder app.py /
-@Pyton-Projects
-Pyton-Projects Update remainder app.py
-Latest commit 811e21e 20 minutes ago
- History
- 1 contributor
-90 lines (88 sloc)  4.49 KB
-  
 from tkinter import*
 from tkinter import ttk
 from tkinter.font import Font

@@ -1,75 +1,120 @@
-# Start
-# -----------------------------------------------------------------------
+Skip to content
+Search or jump to…
+
+Pulls
+Issues
+Marketplace
+Explore
+ 
+@Pyton-Projects 
+Pyton-Projects
+/
+My-All-Tkinter-Projects
+1
+10
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+More
+My-All-Tkinter-Projects/remainder app.py /
+@Pyton-Projects
+Pyton-Projects Update remainder app.py
+Latest commit 811e21e 20 minutes ago
+ History
+ 1 contributor
+90 lines (88 sloc)  4.49 KB
+  
 from tkinter import*
-from tkinter import filedialog
-import tkinter.ttk
-import PIL
-import os
-from PIL import Image 
-root=Tk()
-filters=('Blur','Smooth','Detail','Sharpen')
-root.geometry('800x200')
-root.maxsize(800,200)
-root.minsize(800,200)
-root.title('Image Compresser')
-opend_file_path=Label(root,text=None)
-saved_file_path=Label(root,text=None,fg='purple1')
-quality=Label(root,text='Quality')
-filters=Label(root,text='')
-quality.place(x=510,y=65+2+2)
-i=StringVar()
-root.title("testing the combobox")
-root.geometry('300x300+50+50')
-filters='Blur','Smooth','Detail','Sharpen'
-filters_ = tkinter.ttk.Combobox(root, values=filters,text=i,width=9)
-filters_['state']='readonly'
-quality=(50,60,70,80,90,100)
-int_=IntVar()
-int_.set(80)
-quality_=tkinter.ttk.Combobox(root,values=quality,text=int_,width=9)
-quality_['state']='readonly'
-def closed():
-    from tkinter import messagebox
-    question=messagebox.askquestion('Question','Are You Sure To Quit?')
-    if question=='yes':
-        import sys
-        sys.exit()
-    else:
-        None
-root.protocol('WM_DELETE_WINDOW',closed)
-def compress():
+from tkinter import ttk
+from tkinter.font import Font
+from tkinter import messagebox
+from plyer import*
+import time as ee
+from ttkthemes import ThemedTk,THEMES
+import datetime
+import sys
+import random
+import winsound
+facts='The world’s oldest toy is a stick','Moon flowers actually bloom in response to the moon','The biggest Dalmatian litter ever was 18 puppies','Sea otters hold hands while they sleep','The largest sand castle in the world measured 54 feet high','There are over 10 holidays that celebrate chocolate','Chocolate is (kinda) a fruit','The voices of Mickey and Minnie Mouse got married in real life','Lazy people actually think more','Fall leaf colors are present year-round','Two Buck Chuck once won a wine competition','The way you eat Oreos says something about your personality','The Queen drinks champagne almost every day','The moon has its own time zones','Americans eat 100 acres of pizza a day','Smiling is actually contagious','A team of six women programmed the first digital computer','Baby elephants suck their trunks for comfort','''There's a 107-acre forest made up of a single tree''','Tomatoes are both a fruit and a vegetable','''There's an official rock paper scissors league'''
+def x():
+	question=messagebox.askquestion('Message','Are You Sure To Quit? Timer Will Be Disabled If You Quit')
+	if question=='yes':
+		sys.exit()
+	if question!='no':
+		None
+def notification_():
+
 	try:
-		img=PIL.Image.open(f'{filename.name}')
-		my_1,my_2=img.size
-		img=img.resize((my_1,my_2),PIL.Image.ANTIALIAS)
-		save_=filedialog.asksaveasfilename()
-		print(int_.get())
-		img.save(save_+'.jpg',optimize=True,quality=int_.get())
-		saved_file_path.config(text=f'Saved File Path- {save_}.jpg')
-		saved_file_path.place(x=1,y=150)
-		os.startfile(f'{save_}.jpg')
+		notification.notify(
+            	title = "Your Remainder!",
+            	message=F"""{task_value_}Do You Know? 
+{random.choice(facts)} Thats a Fact!""")
+		frequency = 2000
+		duration = 2000 
+		winsound.Beep(frequency, duration)
 	except Exception:
-		import tkinter.messagebox
-		tkinter.messagebox.showwarning('Info','File Not Saved!')
-		saved_file_path.config(text='')
-def open_file_name():
-    global filename
-    filename=filedialog.askopenfile(filetypes=(('JPG Image','*.jpg'),(('JPG Image','*.jpg'))))
-    if filename==None:
-        compression_button.config(command='')
-        opend_file_path.config(text='')
-        import tkinter.messagebox
-        tkinter.messagebox.showwarning('info','File Not Imported!')
-    if filename!=None:
-        compression_button.config(command=compress)
-        opend_file_path.config(text=f'''Opened File Path- {filename.name}''')
-        opend_file_path.place(x=1,y=175)# How To file is converted or not
-heading=Label(root,text='Image Compresser',fg='Cyan4',font=("helvatica", 16, "bold italic"))
-heading.pack()
-compression_button=Button(root,text='Comprees',activeforeground='white',activebackground='black',fg='white',bg='black')
-import_button=Button(root,text='Select A Image File',command=open_file_name,activeforeground='black',activebackground='light blue',fg='black',bg='light blue')# if filname is none then show then show a popup to  use my image converter to convert image you have if yes then import image converter.else:do nothing
-import_button.place(x=300+10+5+5+10+10,y=49)
-compression_button.place(x=310+10+10+10+10+10+5,y=89)# black white
-quality_.place(x=500,y=90)
-filters_.place(x=500,y=49)
-mainloop()
+		messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
+def timer():
+	if len(task.get("1.0", "end-1c")) ==0:
+		messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
+	else:
+		messagebox.showinfo('Message','Timer Set Suceesfully!')	
+		formula_to_find_seconds=sec_value.get()*1000
+		formula_to_find_minutes=min_value.get()*60000
+		formula_to_find_hours=hour_value.get()*3600000
+		time=formula_to_find_seconds+formula_to_find_minutes+formula_to_find_hours
+		root.after(time,notification_)
+def task_value():
+	global task_value_
+	task_value_=task.get(1.0,END)
+	if len(task.get("1.0", "end-1c")) == 0:# This Logic Came From https://stackoverflow.com/questions/38539617/tkinter-check-if-text-widget-is-empty
+		question=messagebox.showinfo('Message','Please Put Something For Your Task!')
+	if len(task.get("1.0", "end-1c")) != 0:
+		messagebox.showinfo('Message','Task Set Suceesfully! Now Go And Set Your Timer! ')# create a menu 
+root=ThemedTk(themebg=True)
+root.set_theme('arc')
+root.protocol('WM_DELETE_WINDOW',x)
+root.maxsize(900,400)
+root.minsize(900,400)
+min_value=IntVar()
+sec_value=IntVar()
+hour_value=IntVar()
+
+task=Text(root,width=15,height=5)
+task.place(x=365,y=250)
+root.title('Remainder Application For Windows')
+heading_label=ttk.Label(root,text='Desktop Remainder App',font=('Times',15))
+heading_label.pack()
+start=ttk.Spinbox(root,from_=0,to=23,width=3,textvariable=hour_value,font=Font(family='times',size=15))
+start.place(x=400,y=65)
+start['state']='readonly'
+hour=ttk.Label(root,text='Hour',font=('Times',13))# go and find some facts
+hour.place(x=340,y=65)
+min_=ttk.Label(root,text='Minutes',font=('Times',13))
+min_.place(x=330,y=100)
+sec_=ttk.Label(root,text='Seconds',font=('Times',13))
+sec_.place(x=330,y=139)
+Task_Identity=ttk.Label(root,text='Put Your Task Down Below When Time Hits The Task Will Show In The Notifaction',font=('Times',11))
+Task_Identity.place(x=165,y=220)
+start_min=ttk.Spinbox(root,from_=0,to=59,width=3,textvariable=min_value,font=Font(root,family='times',size=15))
+start_min.place(x=400,y=100)
+start_min['state']='readonly'
+start_sec=ttk.Spinbox(root,from_=0,to=59,width=3,textvariable=sec_value,font=Font(root,family='times',size=15))
+start_sec.place(x=400,y=140)
+start_sec['state']='readonly'
+set_=ttk.Button(root,text='Set Timer',command=timer)
+set_.place(x=385,y=180)
+set_task=ttk.Button(root,text='Set Task',command=task_value)
+set_task.place(x=385,y=340,)
+root.mainloop()
+# set task to do project
+# a software that can get the rgb color value form a int
+# WHY SUMBLIME TEXT SHORCUT RuN SHORCUT IS Ctrl+B?
+# answer-->Ctrl+c copy code from stackoverflow # ctrl+v paste it to text editor then press ctrl+b to execute it...!
+# notifaction type
+# set task to do progject
+# a software that can get the color value form a int

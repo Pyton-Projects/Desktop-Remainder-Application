@@ -20,31 +20,35 @@ def notification_():
             	title = "Your Remainder!",
             	message=F"""{task_value_}Do You Know? 
 {random.choice(facts)} Thats a Fact!""")
+		print('Here Is Your Remainder!')
 		frequency = 2000
 		duration = 2000 
 		winsound.Beep(frequency, duration)
+
 	except Exception:
 		messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
-def clock():
-	'''put the clock time to notifaction time!'''
+def info():
+	messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
 def timer():
-	if len(task.get("1.0", "end-1c")) !=0:
-		formula_to_find_seconds=sec_value.get()*1000
-		formula_to_find_minutes=min_value.get()*60000
-		formula_to_find_hours=hour_value.get()*3600000
-		time=formula_to_find_seconds+formula_to_find_minutes+formula_to_find_hours
-		root.after(time,notification_)
+	print('''Remainder Is Running.... Please Don't Quit The Application. ''')
+	formula_to_find_seconds=sec_value.get()*1000
+	formula_to_find_minutes=min_value.get()*60000
+	formula_to_find_hours=hour_value.get()*3600000
+	time=formula_to_find_seconds+formula_to_find_minutes+formula_to_find_hours
+	root.after(time,notification_)
 	updated = ( datetime.now() +timedelta(hours=int(hour_value.get()),minutes=int(min_value.get()),seconds=sec_value.get())).strftime('%r')
 	time_in_right_fromats=datetime.now().strftime('%r')
 	messagebox.showinfo(f'Message',f'The Time Set At {time_in_right_fromats} And You Will Get A Notifaction At {updated}')
-
 def task_value():
 	global task_value_
 	task_value_=task.get(1.0,END)
 	if len(task.get("1.0", "end-1c")) == 0:# This Logic Came From https://stackoverflow.com/questions/38539617/tkinter-check-if-text-widget-is-empty
 		question=messagebox.showinfo('Message','Please Put Something For Your Task!')
+		set_.config(command=info)
 	if len(task.get("1.0", "end-1c")) != 0:
-		messagebox.showinfo('Message','Task Set Suceesfully! Now Go And Set Your Timer! ')# create a menu 
+		messagebox.showinfo('Message','Task Set Suceesfully! Now Go And Set Your Timer! ')
+		set_.config(command=timer)
+		# create a menu 
 root=ThemedTk(themebg=True)
 root.set_theme('arc')
 root.protocol('WM_DELETE_WINDOW',x)
@@ -75,11 +79,12 @@ start_min['state']='readonly'
 start_sec=ttk.Spinbox(root,from_=0,to=59,width=3,textvariable=sec_value,font=Font(root,family='times',size=15))
 start_sec.place(x=400,y=140)
 start_sec['state']='readonly'
-set_=ttk.Button(root,text='Set Timer',command=timer)
+set_=ttk.Button(root,text='Set Timer',command=info)
 set_.place(x=385,y=180)
 set_task=ttk.Button(root,text='Set Task',command=task_value)
 set_task.place(x=385,y=340,)
 root.mainloop()
+# End!
 # set task to do project
 # a software that can get the rgb color value form a int
 # WHY SUMBLIME TEXT SHORCUT RuN SHORCUT IS Ctrl+B?

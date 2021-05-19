@@ -29,16 +29,14 @@ def clock():
 	'''put the clock time to notifaction time!'''
 def timer():
 	if len(task.get("1.0", "end-1c")) !=0:
-		updated = ( datetime.now() +timedelta(hours=int(hour_value.get()),minutes=int(min_value.get()),seconds=sec_value.get())).strftime('%r')
-		time_in_right_fromats=datetime.now().strftime('%r')
-		messagebox.showinfo(f'Message',f'The Time Set At {time_in_right_fromats} And You Will Get A Notifaction At {updated}')
-
 		formula_to_find_seconds=sec_value.get()*1000
 		formula_to_find_minutes=min_value.get()*60000
 		formula_to_find_hours=hour_value.get()*3600000
 		time=formula_to_find_seconds+formula_to_find_minutes+formula_to_find_hours
 		root.after(time,notification_)
-
+	updated = ( datetime.now() +timedelta(hours=int(hour_value.get()),minutes=int(min_value.get()),seconds=sec_value.get())).strftime('%r')
+	time_in_right_fromats=datetime.now().strftime('%r')
+	messagebox.showinfo(f'Message',f'The Time Set At {time_in_right_fromats} And You Will Get A Notifaction At {updated}')
 
 def task_value():
 	global task_value_

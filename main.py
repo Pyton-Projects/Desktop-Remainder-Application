@@ -1,3 +1,4 @@
+  
 from tkinter import*
 from tkinter import ttk
 from tkinter.font import Font
@@ -5,7 +6,6 @@ from tkinter import messagebox
 from plyer import*
 from ttkthemes import ThemedTk,THEMES
 from datetime import datetime, timedelta
-import random
 import winsound
 def x():
 	question=messagebox.askquestion('Message','Are You Sure To Quit? Remainder Will Be Disabled If You Quit')
@@ -14,17 +14,30 @@ def x():
 	if question!='no':
 		None
 def notification_():
-	try:
-		notification.notify(
-            	title = "Your Remainder!",
-            	message=F"""{task_value_}""")
-		print('Here Is Your Remainder!')
-		print(f'The Time Is Now {updated} Your Remainder Time!')
-		frequency = 2000
-		duration = 2000 
-		winsound.Beep(frequency, duration)
-	except Exception:
-		messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
+	if check==True:
+		try:
+				notification.notify(
+            		title = "Your Remainder!",
+            		message=F"""{str(new_task)}""")
+				print('Here Is Your Remainder!')
+				print(f'The Time Is Now {updated} Your Remainder Time!')
+				frequency = 2000
+				duration =1500
+				winsound.Beep(frequency, duration)
+		except Exception:
+			messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
+	if check==False:
+		try:
+			notification.notify(
+            		title = "Your Remainder!",
+            		message=F"""{str(task_value_)}""")
+			print('Here Is Your Remainder!')
+			print(f'The Time Is Now {updated} Your Remainder Time!')
+			frequency = 2000
+			duration = 1500
+			winsound.Beep(frequency, duration)
+		except Exception:
+			messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
 def info():
 	messagebox.showinfo('Message','Please Set A Task Then Cilck On Set Task Button')
 def Remainder():
@@ -39,16 +52,25 @@ def Remainder():
 	time_in_right_fromats=datetime.now().strftime('%r')
 	messagebox.showinfo(f'Message',f'The Time Set At {time_in_right_fromats} And You Will Get A Notifaction At {updated}')
 def task_value():
+	global check 
+	check=False
 	global task_value_
 	task_value_=task.get(1.0,END)
 	if len(task.get("1.0", "end-1c")) == 0:# This Logic Came From https://stackoverflow.com/questions/38539617/tkinter-check-if-text-widget-is-empty
 		question=messagebox.showinfo('Message','Please Put Something For Your Task!')
 		set_.config(command=info)
-	if len(task.get("1.0", "end-1c")) != 0:
+	if str(task.get(1.0,END)).isspace():
+		question=messagebox.showinfo('Message','Please Put Something For Your Task!')
+		set_.config(command=info)
+	else:
 		messagebox.showinfo('Message','Task Set Suceesfully! Now Go And Set Your Remainder!')
-		print('Tip-Click On Set Timer Button To Update Task!')
 		set_.config(command=Remainder)
-		# create a menu 
+		update.place(x=500,y=340)
+def update_task():
+	global check
+	global new_task
+	new_task=task.get(1.0,END)
+	check=True
 root=ThemedTk(themebg=True)
 root.set_theme('arc')
 root.protocol('WM_DELETE_WINDOW',x)
@@ -83,6 +105,6 @@ set_=ttk.Button(root,text='Set Remainder',command=info)
 set_.place(x=375,y=180)
 set_task=ttk.Button(root,text='Set Task',command=task_value)
 set_task.place(x=385,y=340,)
+update=ttk.Button(root,text='Click Me For Update Your Old Task!',command=update_task)
 root.mainloop()
 # End!
-

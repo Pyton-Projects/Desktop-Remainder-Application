@@ -71,6 +71,8 @@ def update_task():
 	global new_task
 	new_task=task.get(1.0,END)
 	check=True
+	messagebox.showinfo('Info','Task Updated SuceesFully!')
+
 root=ThemedTk(themebg=True)
 root.set_theme('arc')
 root.protocol('WM_DELETE_WINDOW',x)

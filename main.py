@@ -63,7 +63,7 @@ def task_value():
 		question=messagebox.showinfo('Message','Please Put Something For Your Task!')
 		set_.config(command=info)
 	else:
-		messagebox.showinfo('Message','Task Set Suceesfully! Now Go And Set Your Remainder!')
+		messagebox.showinfo('Message','Remind Set Suceesfully! Now Go And Set Your Remainder!')
 		set_.config(command=Remainder)
 		update.place(x=500,y=340)
 def update_task():
@@ -93,8 +93,8 @@ min_=ttk.Label(root,text='Minutes',font=('Times',13))
 min_.place(x=330,y=100)
 sec_=ttk.Label(root,text='Seconds',font=('Times',13))
 sec_.place(x=330,y=139)
-Task_Identity=ttk.Label(root,text='Put Your Task Down Below When Time Hits The Task Will Show In The Notifaction',font=('Times',11))
-Task_Identity.place(x=165,y=220)
+Task_Identity=ttk.Label(root,text='What shall I remind you about? Put Down Below',font=('Times',11))
+Task_Identity.place(x=300,y=220)
 start_min=ttk.Spinbox(root,from_=0,to=59,width=3,textvariable=min_value,font=Font(root,family='times',size=15))
 start_min.place(x=400,y=100)
 start_min['state']='readonly'
@@ -103,8 +103,8 @@ start_sec.place(x=400,y=140)
 start_sec['state']='readonly'
 set_=ttk.Button(root,text='Set Remainder',command=info)
 set_.place(x=375,y=180)
-set_task=ttk.Button(root,text='Set Task',command=task_value)
+set_task=ttk.Button(root,text='Set Remind',command=task_value)
 set_task.place(x=385,y=340,)
-update=ttk.Button(root,text='Click Me For Update Your Old Task!',command=update_task)
+update=ttk.Button(root,text='Click Me For Update Your Old Remind!',command=update_task)
 root.mainloop()
 # End!

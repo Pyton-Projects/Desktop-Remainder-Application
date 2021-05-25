@@ -47,7 +47,7 @@ def Remainder():
 	root.after(time,notification_)
 	updated = ( datetime.now() +timedelta(hours=int(hour_value.get()),minutes=int(min_value.get()),seconds=sec_value.get())).strftime('%r')
 	time_in_right_fromats=datetime.now().strftime('%r')
-	messagebox.showinfo(f'Message',f'The Time Set At {time_in_right_fromats} And You Will Get A Notifaction At {updated}')
+	messagebox.showinfo(f'Message',f'The Time Set At {time_in_right_fromats} And You Will Get A Notifaction And A Random Meme Sound At {updated}')
 def task_value():
 	global check 
 	check=False
@@ -56,7 +56,7 @@ def task_value():
 	if len(task.get("1.0", "end-1c")) == 0:# This Logic Came From https://stackoverflow.com/questions/38539617/tkinter-check-if-text-widget-is-empty
 		question=messagebox.showinfo('Message','Please Put Something For Your Task!')
 		set_.config(command=info)
-	if str(task.get(1.0,END)).isspace():
+	elif str(task.get(1.0,END)).isspace():
 		question=messagebox.showinfo('Message','Please Put Something For Your Task!')
 		set_.config(command=info)
 	else:
@@ -107,6 +107,3 @@ set_task.place(x=385,y=340,)
 update=ttk.Button(root,text='Click Me For Update Your Old Remind!',command=update_task)
 root.mainloop()
 # End!
-# software that can detect sound,a softawre that can get color value from a int
-# enachen rock paper siccors!
-# unit converter!!

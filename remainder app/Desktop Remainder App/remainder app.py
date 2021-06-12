@@ -6,7 +6,7 @@ from plyer import*
 from ttkthemes import ThemedTk,THEMES
 from datetime import datetime, timedelta
 import winsound
-import pygame
+import pygame#adding more featuress
 import random
 def x():
 	question=messagebox.askquestion('Message','Are You Sure To Quit? Remainder Will Be Disabled If You Quit')

@@ -16,6 +16,9 @@ min_value=IntVar()# create menus in remainder app and deice roling simulator
 sec_value=IntVar()# ansea lib for sync audio to text!
 hour_value=IntVar()#create stickman animation
 get__=StringVar()
+#bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11bts&&txt11
+# bts&&txt11bts&&txt11bts&&txt11
+# bts&&txt11bts&&txt11bts&&txt11
 def which_alert():
 	d = Dialog(None, {'title': 'Question',
                       'text':'Which Alert Do You Want? You Will Remind For Your Task Through Your Selected Alert',
@@ -31,9 +34,6 @@ def which_alert():
 def ask_phone_number():
 	global phone_number
 	phone_number=simpledialog.askstring(title='Phone Number',prompt='Enter Your Phone Number (With Contury Code Incuded)')
-	if phone_number==None:
-		messagebox.showinfo('Info','Please Enter A Number!')
-		pro_1.stop()
 def sms_alert():
 	
 	pro_1.stop()
@@ -41,13 +41,13 @@ def sms_alert():
 	auccont_Id='ACc40d20513c749b4a83d9beabae995ac1'
 	auth_token='0a05394fb1aeeb46f0c38a43e6b62bce'
 	c=Client(auccont_Id,auth_token)
-	try:
-		if check==False:
+	# try:
+	if check==False:
 			c.messages.create(body=F"Hey! user You Need To Do {task_value_} Reply Yes To Confrom That You Reviced The Alert!",from_='+19563985957',to=phone_number)
-		if check==True:
+	if check==True:
 			c.messages.create(body=F"Hey! user You Need To Do {update_task} Reply Yes To Confrom That You Reviced The Alert!",from_='+19563985957',to=phone_number)
-	except:
-		messagebox.showinfo('Info','Check Your Network Connection. Or Check The Phone Number You Entered (Your Phone Number-{number})'.format(number=phone_number))
+	# except:
+	# 	messagebox.showinfo('Info','Check Your Network Connection. Or Check The Phone Number You Entered (Your Phone Number-{number})'.format(number=phone_number))
 		
 
 def phone_alert():#password:
@@ -175,7 +175,6 @@ pro_1=Progressbar(root,length=250)
 pro_1.place(x=600,y=60)
 dat=StringVar()
 then=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r')
-print(then)
 l_1=ttk.Label(root,text=then,textvariable=dat)
 l_1.place(x=530,y=80)
 dat.set(then)

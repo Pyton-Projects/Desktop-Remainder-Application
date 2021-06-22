@@ -38,8 +38,7 @@ def sms_alert():
 	
 	pro_1.stop()
 	set_.config(command=Remainder)
-	auccont_Id='ACc40d20513c749b4a83d9beabae995ac1'
-	auth_token='0a05394fb1aeeb46f0c38a43e6b62bce'
+	
 	c=Client(auccont_Id,auth_token)
 	# try:
 	if check==False:
@@ -60,8 +59,7 @@ def phone_alert():#password:
 		wait till the timer hits the time
 		if timer hits the time call the user"""
 		
-	auccont_Id='ACc40d20513c749b4a83d9beabae995ac1'
-	auth_token='0a05394fb1aeeb46f0c38a43e6b62bce'
+	
 	c=Client(auccont_Id,auth_token)#say the task
 	try:
 		c.calls.create(from_='+19563985957',url='https://demo.twilio.com/docs/voice.xml',to=phone_number)

@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 from tkinter import simpledialog
 root=ThemedTk(themebg=True)
 root.set_theme('arc')
-min_value=IntVar()# create menus in remainder app and deice roling simulator
+min_value=IntVar()# create menus in reminder app and deice roling simulator
 sec_value=IntVar()# ansea lib for sync audio to text!
 hour_value=IntVar()#create stickman animation
 get__=StringVar()
@@ -45,7 +45,7 @@ def ask_phone_number():
 def sms_alert():
 	global check_11
 	pro_1.stop()
-	set_.config(command=Remainder)
+	set_.config(command=reminder)
 	auccont_Id=os.environ.get('MY_SID')
 	auth_token=os.environ.get('MY_AUTH_TOKEN')
 	c=Client(auccont_Id,auth_token)
@@ -61,11 +61,11 @@ def sms_alert():
 			
 	if check_11==True:
 		pass
-	# check anonther reminder app,correct sppelings,rename repo,small the
+	# check anonther reminder app,correct sppelings,rename repo,small
 		
 def phone_alert():
 	pro_1.stop()
-	set_.config(command=Remainder)
+	set_.config(command=reminder)
 	auccont_Id=os.environ.get('MY_SID')
 	auth_token=os.environ.get('MY_AUTH_TOKEN')
 	print(auth_token,auccont_Id)
@@ -75,34 +75,34 @@ def phone_alert():
 	except:
 		messagebox.showinfo('Info','Check Your Network Connection Or Check The Phone Number You Entered (Your Phone Number-{number})'.format(number=phone_number))
 		
-def new_remainder():
+def new_reminder():
 	pass
 def x():
-	question=messagebox.askquestion('Message','Are You Sure To Quit? Remainder Will Be Disabled If You Quit')
+	question=messagebox.askquestion('Message','Are You Sure To Quit? reminder Will Be Disabled If You Quit')
 	if question=='yes':
 		exit()
 	if question=='no':
 		None
 def notification_():
-	set_.config(command=Remainder)
+	set_.config(command=reminder)
 	if check==True:
-		set_.config(command=Remainder)
+		set_.config(command=reminder)
 
 		pro_1.stop()
 		notification.notify(
-            	title = "Your Remainder!",
+            	title = "Your reminder!",
                 message=F"""{str(new_task)}""",)
-		print('Here Is Your Remainder!')
+		print('Here Is Your reminder!')
 	if check==False:
-		set_.config(command=Remainder)
+		set_.config(command=reminder)
 
 		pro_1.stop()
 		notification.notify(
-            		title = "Your Remainder!",
+            		title = "Your reminder!",
             		message=F"""{str(task_value_)}""",)
-		print('Here Is Your Remainder!')
+		print('Here Is Your reminder!')
 		# print(f'The Time Is Now {updated} Your Remaind Time!')
-	set_.config(command=Remainder)
+	set_.config(command=reminder)
 def info():
 	messagebox.showinfo('Message','Please Set A Task From Down Below Then Cilck On Set Remaind Button')
 def main_pros():
@@ -119,7 +119,7 @@ def main_pros():
 	root.update()#clean github repotries
 
 def info1():
-	messagebox.showinfo('Message','Another Remind Is Running Do You Want To Set Another Remainder? If Yes Then Go To File Menu Then Click On New Remainder Option.')
+	messagebox.showinfo('Message','Another Remind Is Running Do You Want To Set Another reminder? If Yes Then Go To File Menu Then Click On New reminder Option.')
 get__.set('Intaial value')
 def cancel():
 	pro_1.stop()
@@ -136,7 +136,7 @@ def cancel():
 		phone_alert()
 	if Selected_Val==2:
 		notification_()
-def Remainder():
+def reminder():
 
 	if sec_value.get()==0 and min_value.get()==0 and hour_value.get()==0:
 			messagebox.showinfo('Message','Please Add More Time!')	
@@ -193,8 +193,8 @@ def task_value():
 		question=messagebox.showinfo('Message','Please Put Something For Your Task!')
 		set_.config(command=info)
 	else:
-		messagebox.showinfo('Message','Remind Set Successfully! Now Go And Set Your Remainder')
-		set_.config(command=Remainder)
+		messagebox.showinfo('Message','Remind Set Successfully! Now Go And Set Your reminder')
+		set_.config(command=reminder)
 		update.place(x=500,y=340)#stopwatch
 def update_task():
 	global check
@@ -213,7 +213,7 @@ l.place(x=660,y=30)
 # use elf when thre is a chance to get both satement true
 menus = Menu(root)
 m1 = Menu(menus, tearoff=0)
-m1.add_command(label='New Remainder')
+m1.add_command(label='New reminder')
 m1.add_command(label='How To Use The Software?', command=quit)
 root.config(menu=menus)
 menus.add_cascade(label='File', menu=m1, )
@@ -225,8 +225,8 @@ sec_value=IntVar()
 hour_value=IntVar()
 task=Text(root,width=15,height=5)
 task.place(x=365,y=250)
-root.title('Remainder Application For Windows')
-heading_label=ttk.Label(root,text='Desktop Remainder App',font=('Times',19))
+root.title('reminder Application For Windows')
+heading_label=ttk.Label(root,text='Desktop reminder App',font=('Times',19))
 heading_label.pack()
 start=ttk.Spinbox(root,from_=0,to=23,width=3,textvariable=hour_value,font=Font(family='times',size=15))
 start.place(x=400,y=65)
@@ -245,7 +245,7 @@ start_min['state']='readonly'
 start_sec=ttk.Spinbox(root,from_=0,to=59,width=3,textvariable=sec_value,font=Font(root,family='times',size=15))
 start_sec.place(x=400,y=140)
 start_sec['state']='readonly'
-set_=ttk.Button(root,text='Set Remainder',command=info)
+set_=ttk.Button(root,text='Set reminder',command=info)
 set_.place(x=375,y=180)
 set_task=ttk.Button(root,text='Set Remind',command=task_value)
 set_task.place(x=385,y=340,)
@@ -253,7 +253,7 @@ update=ttk.Button(root,text='Click Me For Update Your Old Remind!',command=updat
 cancel=ttk.Button(root,text='Cancel The Remaind',command=cancel)# check speelings,study today.
 mainloop()
 # End!
-# CREATE bUTTON fOR  FOR CREATING NEW REMAINDER
+# CREATE bUTTON fOR  FOR CREATING NEW reminder
 # use elif when there is a chance to get both satement true
 
 # a softwarre that can short english sentence!

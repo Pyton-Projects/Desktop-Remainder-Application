@@ -61,7 +61,7 @@ def sms_alert():
 			
 	if check_11==True:
 		pass
-	# check anonther reaminder app,correct sppelings,rename repo
+	# check anonther reminder app,correct sppelings,rename repo
 		
 def phone_alert():
 	pro_1.stop()

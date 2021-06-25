@@ -16,8 +16,6 @@ min_value=IntVar()# create menus in reminder app and deice roling simulator
 sec_value=IntVar()# ansea lib for sync audio to text!
 hour_value=IntVar()#create stickman animation
 get__=StringVar()
-check_11=False
-
 def which_alert():
 	d = Dialog(None, {'title': 'Question',
                       'text':'Which Alert Do You Want? You Will Remind For Your Task Through Your Selected Alert',
@@ -31,36 +29,35 @@ def which_alert():
 	Selected_Val=d.num
 def c():
 	notification.notify(title='Canceled..!',message='')
-check_22=False#fix bugs.
+None_22=False#fix bugs.
 def ask_phone_number():
-	global check_22
+	global None_22
 	global phone_number
 	phone_number=simpledialog.askstring(title='Phone Number',prompt='Enter Your Phone Number (With Contury Code Incuded)')
-	check_22=True
+	None_22=True
 	t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
 	t_1.place(x=570,y=80)
 	cancel.place(x=665,y=80)
 	t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
 	t.place(x=825,y=80)
 def sms_alert():
-	global check_11
+	global None_11
 	pro_1.stop()
 	set_.config(command=reminder)
 	auccont_Id=os.environ.get('MY_SID')
 	auth_token=os.environ.get('MY_AUTH_TOKEN')
 	c=Client(auccont_Id,auth_token)
-	if check_11==False:
-		try:
-			if check==False:
-				c.messages.create(body=F"Hey! user You Need To Do {task_value_} At This Time Reply Yes To Confrom That You Reviced The Alert!",from_='+19563985957',to=phone_number)
-			if check==True:
-				c.messages.create(body=F"Hey! user You Need To Do {update_task} AT This Time Reply Yes To Confrom That You Reviced The Alert!",from_='+19563985957',to=phone_number)
+	
+	try:
+		if check==False:
+			c.messages.create(body=F"Hey! user You Need To Do {task_value_} At This Time Reply Yes To Confrom That You Reviced The Alert!",from_='+19563985957',to=phone_number)
+		if check==True:
+			c.messages.create(body=F"Hey! user You Need To Do {update_task} AT This Time Reply Yes To Confrom That You Reviced The Alert!",from_='+19563985957',to=phone_number)
 		
-		except:
-			messagebox.showinfo('Info','Check Your Network Connection. Or Check The Phone Number You Entered (Your Phone Number-{number})'.format(number=phone_number))
+	except:
+		messagebox.showinfo('Info','None Your Network Connection. Or None The Phone Number You Entered (Your Phone Number-{number})'.format(number=phone_number))
 			
-	if check_11==True:
-		pass
+
 	#,correct sppelings,rename repo,small
 		
 def phone_alert():
@@ -73,7 +70,7 @@ def phone_alert():
 	try:
 		c.calls.create(from_='+19563985957',url='https://demo.twilio.com/docs/voice.xml',to=phone_number)
 	except:
-		messagebox.showinfo('Info','Check Your Network Connection Or Check The Phone Number You Entered (Your Phone Number-{number})'.format(number=phone_number))
+		messagebox.showinfo('Info','None Your Network Connection Or None The Phone Number You Entered (Your Phone Number-{number})'.format(number=phone_number))
 		
 def new_reminder():
 	pass
@@ -123,29 +120,27 @@ def info1():
 get__.set('Intaial value')
 def cancel():
 	pro_1.stop()
-	global check_11
-	check_11=True
+	global None_11
+	None_11=True
 	if Selected_Val==0:
-		if check_22==True:
-			pass
-		if check_22==False:
-			sms_alert()
-		else:
-			pass
+		root.after_cancel(called_1)
+		set_.config(command=reminder)
 	if Selected_Val==1:
-		phone_alert()
+		root.after_cancel(called_2)
+		set_.config(command=reminder)
 	if Selected_Val==2:
-		notification_()
+		root.after_cancel(called_3)
+		set_.config(command=reminder)
 def reminder():
-
 	if sec_value.get()==0 and min_value.get()==0 and hour_value.get()==0:
 			messagebox.showinfo('Message','Please Add More Time!')	
 	#  a most used word in a programmer lif is ;
 	else:
 		global time# how to give a python to give 
 		global updated
-		global check_11
-		print(check_11)
+		global called_1
+		global called_2
+		global called_3
 		print('''Remaind Is Running.... Please Don't Quit The Application. ''')
 		formula_to_find_seconds=sec_value.get()*1000
 		formula_to_find_minutes=min_value.get()*60000
@@ -153,24 +148,24 @@ def reminder():
 		time=formula_to_find_seconds+formula_to_find_minutes+formula_to_find_hours
 		which_alert()
 		if Selected_Val==0:
-			check_11=False
+			None_11=False
 			t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
 			t_1.place(x=570,y=80)
 			cancel.place(x=665,y=80)
 			t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
 			t.place(x=825,y=80)
 			ask_phone_number()
-			root.after(time,sms_alert)
+			called_1=root.after(time,sms_alert)
 			main_pros()
 		if Selected_Val==1:
-			check_11=False
+			None_11=False
 			t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
 			t_1.place(x=570,y=80)
 			cancel.place(x=665,y=80)
 			t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
 			t.place(x=825,y=80)
 			ask_phone_number()
-			root.after(time,phone_alert)
+			called_2=root.after(time,phone_alert)
 			main_pros()
 		if Selected_Val==2:
 			t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
@@ -179,14 +174,14 @@ def reminder():
 			t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
 			t_1.place(x=570,y=80)
 			t.place(x=825,y=80)
-			root.after(time,notification_)
+			called_3=root.after(time,notification_)
 			main_pros()
 def task_value():
-	global check 
+	global check
 	check=False
 	global task_value_
 	task_value_=task.get(1.0,END)
-	if len(task.get("1.0", "end-1c")) == 0:# This Logic Came From https://stackoverflow.com/questions/38539617/tkinter-check-if-text-widget-is-empty
+	if len(task.get("1.0", "end-1c")) == 0:# This Logic Came From https://stackoverflow.com/questions/38539617/tkinter-None-if-text-widget-is-empty
 		question=messagebox.showinfo('Message','Please Put Something For Your Task!')
 		set_.config(command=info)
 	elif str(task.get(1.0,END)).isspace():
@@ -202,7 +197,6 @@ def update_task():
 	new_task=task.get(1.0,END)
 	check=True
 	messagebox.showinfo('Info','Task Updated!')
-
 root.protocol('WM_DELETE_WINDOW',x)
 pro_1=Progressbar(root,length=250)
 pro_1.place(x=600,y=60)
@@ -210,14 +204,11 @@ dat=StringVar()
 print(sec_value)
 l=ttk.Label(root,text='Progress Of Your Remind',font=('Time',10))
 l.place(x=660,y=30)
-# use elf when thre is a chance to get both satement true
 menus = Menu(root)
 m1 = Menu(menus, tearoff=0)
 m1.add_command(label='New reminder')
-m1.add_command(label='How To Use The Software?', command=quit)
 root.config(menu=menus)
 menus.add_cascade(label='File', menu=m1, )
-
 root.maxsize(900,400)
 root.minsize(900,400)
 min_value=IntVar()
@@ -250,7 +241,7 @@ set_.place(x=375,y=180)
 set_task=ttk.Button(root,text='Set Remind',command=task_value)
 set_task.place(x=385,y=340,)
 update=ttk.Button(root,text='Click Me For Update Your Old Remind!',command=update_task)
-cancel=ttk.Button(root,text='Cancel The Remaind',command=cancel)# check speelings,study today.
+cancel=ttk.Button(root,text='Cancel The Remaind',command=cancel)# None speelings,study today.
 mainloop()
 # End!
 # CREATE bUTTON fOR  FOR CREATING NEW reminder

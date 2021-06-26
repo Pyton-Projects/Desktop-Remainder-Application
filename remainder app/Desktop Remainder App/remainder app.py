@@ -12,10 +12,9 @@ from datetime import datetime, timedelta
 from tkinter import simpledialog
 root=ThemedTk(themebg=True)
 root.set_theme('arc')
-min_value=IntVar()# create menus in reminder app and deice roling simulator
-sec_value=IntVar()# ansea lib for sync audio to text!
-hour_value=IntVar()#create stickman animation
-get__=StringVar()
+min_value=IntVar()
+sec_value=IntVar()
+hour_value=IntVar()
 def which_alert():
 	d = Dialog(None, {'title': 'Question',
                       'text':'Which Alert Do You Want? You Will Remind For Your Task Through Your Selected Alert',
@@ -29,12 +28,9 @@ def which_alert():
 	Selected_Val=d.num
 def c():
 	notification.notify(title='Canceled..!',message='')
-None_22=False#fix bugs.
 def ask_phone_number():
-	global None_22
 	global phone_number
 	phone_number=simpledialog.askstring(title='Phone Number',prompt='Enter Your Phone Number (With Contury Code Incuded)')
-	None_22=True
 	t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
 	t_1.place(x=570,y=80)
 	cancel.place(x=665,y=80)
@@ -47,19 +43,13 @@ def sms_alert():
 	auccont_Id=os.environ.get('MY_SID')
 	auth_token=os.environ.get('MY_AUTH_TOKEN')
 	c=Client(auccont_Id,auth_token)
-	
 	try:
 		if check==False:
 			c.messages.create(body=F"Hey! user You Need To Do {task_value_} At This Time Reply Yes To Confrom That You Reviced The Alert!",from_='+19563985957',to=phone_number)
 		if check==True:
 			c.messages.create(body=F"Hey! user You Need To Do {update_task} AT This Time Reply Yes To Confrom That You Reviced The Alert!",from_='+19563985957',to=phone_number)
-		
 	except:
-		messagebox.showinfo('Info','None Your Network Connection. Or None The Phone Number You Entered (Your Phone Number-{number})'.format(number=phone_number))
-			
-
-	#,correct sppelings,rename repo,small
-		
+		messagebox.showinfo('Info','None Your Network Connection. Or None The Phone Number You Entered (Your Phone Number-{number})'.format(number=phone_number))		
 def phone_alert():
 	pro_1.stop()
 	set_.config(command=reminder)
@@ -84,7 +74,6 @@ def notification_():
 	set_.config(command=reminder)
 	if check==True:
 		set_.config(command=reminder)
-
 		pro_1.stop()
 		notification.notify(
             	title = "Your reminder!",
@@ -98,7 +87,6 @@ def notification_():
             		title = "Your reminder!",
             		message=F"""{str(task_value_)}""",)
 		print('Here Is Your reminder!')
-		# print(f'The Time Is Now {updated} Your Remaind Time!')
 	set_.config(command=reminder)
 def info():
 	messagebox.showinfo('Message','Please Set A Task From Down Below Then Cilck On Set Remaind Button')
@@ -113,12 +101,10 @@ def main_pros():
 	pro_1['mode']='determinate'# create top level a python program that can short english sentence
 	pro_1['value']=1000
 	pro_1.start(for_mula+for_mula_1+for_mula_2)
-	root.update()#clean github repotries
-
+	root.update()
 def info1():
 	messagebox.showinfo('Message','Another Remind Is Running Do You Want To Set Another reminder? If Yes Then Go To File Menu Then Click On New reminder Option.')
-get__.set('Intaial value')
-def cancel():
+def cancel():#push this aganin
 	pro_1.stop()
 	global None_11
 	None_11=True
@@ -134,9 +120,8 @@ def cancel():
 def reminder():
 	if sec_value.get()==0 and min_value.get()==0 and hour_value.get()==0:
 			messagebox.showinfo('Message','Please Add More Time!')	
-	#  a most used word in a programmer lif is ;
 	else:
-		global time# how to give a python to give 
+		global time#
 		global updated
 		global called_1
 		global called_2
@@ -190,7 +175,7 @@ def task_value():
 	else:
 		messagebox.showinfo('Message','Remind Set Successfully! Now Go And Set Your reminder')
 		set_.config(command=reminder)
-		update.place(x=500,y=340)#stopwatch
+		update.place(x=500,y=340)
 def update_task():
 	global check
 	global new_task
@@ -250,3 +235,5 @@ mainloop()
 # a softwarre that can short english sentence!
 # use cd to switch in different folders use ; to add diffrent paths in one varible!!,a website that can load webpages faster!!!
 # create bakend of alerts
+
+#create countdown timer is this app.

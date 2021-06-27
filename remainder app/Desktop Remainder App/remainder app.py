@@ -201,9 +201,7 @@ sec_value=IntVar()
 hour_value=IntVar()
 task=Text(root,width=15,height=5)
 task.place(x=365,y=250)
-root.title('reminder Application For Windows')
-heading_label=ttk.Label(root,text='Desktop reminder App',font=('Times',19))
-heading_label.pack()
+root.title('Reminder Application For Windows')
 start=ttk.Spinbox(root,from_=0,to=23,width=3,textvariable=hour_value,font=Font(family='times',size=15))
 start.place(x=400,y=65)
 start['state']='readonly'
@@ -227,6 +225,9 @@ set_task=ttk.Button(root,text='Set Remind',command=task_value)
 set_task.place(x=385,y=340,)
 update=ttk.Button(root,text='Click Me For Update Your Old Remind!',command=update_task)
 cancel=ttk.Button(root,text='Cancel The Remaind',command=cancel)# None speelings,study today.
+HEAd=ttk.Label(root,text="""From Now, At When Do You Want To Get Your Reminder? 
+	     Set From Down Below""",font=('times',13))
+HEAd.pack()
 mainloop()
 # End!
 # CREATE bUTTON fOR  FOR CREATING NEW reminder
@@ -236,4 +237,11 @@ mainloop()
 # use cd to switch in different folders use ; to add diffrent paths in one varible!!,a website that can load webpages faster!!!
 # create bakend of alerts
 
-#create countdown timer is this app.
+# push
+# add millseond option.
+
+# create countdown timer is this app.
+# create new reminder option.
+# buy a voice api,sms api
+# push this one again.
+# clean github repo

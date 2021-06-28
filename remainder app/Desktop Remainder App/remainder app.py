@@ -26,8 +26,6 @@ def which_alert():
 	set_.config(command=info1)
 	global Selected_Val
 	Selected_Val=d.num
-def c():
-	notification.notify(title='Canceled..!',message='')
 def ask_phone_number():
 	global phone_number
 	phone_number=simpledialog.askstring(title='Phone Number',prompt='Enter Your Phone Number (With Contury Code Incuded)')
@@ -37,7 +35,10 @@ def ask_phone_number():
 	t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
 	t.place(x=825,y=80)
 def sms_alert():
-	global None_11
+	t_1.place(x=4444)
+	t.place(x=4444)
+	cancel.place(x=44444)
+	root.deiconify()
 	pro_1.stop()
 	set_.config(command=reminder)
 	auccont_Id=os.environ.get('MY_SID')
@@ -51,11 +52,14 @@ def sms_alert():
 	except:
 		messagebox.showinfo('Info','None Your Network Connection. Or None The Phone Number You Entered (Your Phone Number-{number})'.format(number=phone_number))		
 def phone_alert():
+	t_1.place(x=4444)
+	t.place(x=4444)
+	cancel.place(x=44444)
+	root.deiconify()
 	pro_1.stop()
 	set_.config(command=reminder)
 	auccont_Id=os.environ.get('MY_SID')
 	auth_token=os.environ.get('MY_AUTH_TOKEN')
-	print(auth_token,auccont_Id)
 	c=Client(str(auccont_Id),str(auth_token))#say the task
 	try:
 		c.calls.create(from_='+19563985957',url='https://demo.twilio.com/docs/voice.xml',to=phone_number)
@@ -65,12 +69,16 @@ def phone_alert():
 def new_reminder():
 	pass
 def x():
-	question=messagebox.askquestion('Message','Are You Sure To Quit? reminder Will Be Disabled If You Quit')
+	question=messagebox.askquestion('Message','Are You Sure To Quit? Reminder Will Be Run In BackGround If You Quit')
 	if question=='yes':
 		exit()
 	if question=='no':
 		None
 def notification_():
+	t_1.place(x=4444)
+	t.place(x=4444)
+	cancel.place(x=44444)
+	root.deiconify()
 	set_.config(command=reminder)
 	if check==True:
 		set_.config(command=reminder)
@@ -78,7 +86,6 @@ def notification_():
 		notification.notify(
             	title = "Your reminder!",
                 message=F"""{str(new_task)}""",)
-		print('Here Is Your reminder!')
 	if check==False:
 		set_.config(command=reminder)
 
@@ -86,7 +93,6 @@ def notification_():
 		notification.notify(
             		title = "Your reminder!",
             		message=F"""{str(task_value_)}""",)
-		print('Here Is Your reminder!')
 	set_.config(command=reminder)
 def info():
 	messagebox.showinfo('Message','Please Set A Task From Down Below Then Cilck On Set Remaind Button')
@@ -118,7 +124,7 @@ def cancel():#push this aganin
 		root.after_cancel(called_3)
 		set_.config(command=reminder)
 def reminder():
-	if sec_value.get()==0 and min_value.get()==0 and hour_value.get()==0:
+	if sec_value.get()>4 and min_value.get()>4 and hour_value.get()>4:
 			messagebox.showinfo('Message','Please Add More Time!')	
 	else:
 		global time#
@@ -126,41 +132,90 @@ def reminder():
 		global called_1
 		global called_2
 		global called_3
-		print('''Remaind Is Running.... Please Don't Quit The Application. ''')
+		global t_1
+		global t
 		formula_to_find_seconds=sec_value.get()*1000
 		formula_to_find_minutes=min_value.get()*60000
 		formula_to_find_hours=hour_value.get()*3600000
 		time=formula_to_find_seconds+formula_to_find_minutes+formula_to_find_hours
 		which_alert()
 		if Selected_Val==0:
-			None_11=False
-			t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
-			t_1.place(x=570,y=80)
-			cancel.place(x=665,y=80)
-			t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
-			t.place(x=825,y=80)
 			ask_phone_number()
-			called_1=root.after(time,sms_alert)
-			main_pros()
+			ques_1=messagebox.askquestion('Info','App Will Hide It self Do You Want To Hide It?')
+			if ques_1=='no':
+				updated=datetime.now().strftime('%r')
+				timee=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r')
+				messagebox.showinfo('Info',f'Time Set At {updated} And You Will Get A Sms At {timee}')
+				t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
+				t_1.place(x=570,y=80)
+				cancel.place(x=665,y=80)
+				t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
+				t.place(x=825,y=80)
+				called_1=root.after(time,sms_alert)
+				main_pros()
+			if ques_1=='yes':
+				updated=datetime.now().strftime('%r')
+				timee=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r')
+				messagebox.showinfo('Info',f'Time Set At {updated} And You Will Get A Sms At {timee}')
+				root.withdraw()
+				t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
+				t_1.place(x=570,y=80)
+				cancel.place(x=665,y=80)
+				t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
+				t.place(x=825,y=80)
+				called_1=root.after(time,sms_alert)
+				main_pros()
 		if Selected_Val==1:
-			None_11=False
-			t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
-			t_1.place(x=570,y=80)
-			cancel.place(x=665,y=80)
-			t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
-			t.place(x=825,y=80)
 			ask_phone_number()
-			called_2=root.after(time,phone_alert)
-			main_pros()
+			ques_2=messagebox.askquestion('Info','App Will Hide It self Do You Want To Hide It?')
+			if ques_2=='yes':
+				updated=datetime.now().strftime('%r')
+				timee=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r')
+				messagebox.showinfo('Info',f'Time Set At {updated} And You Will Get A Sms At {timee}')
+				root.withdraw()
+				t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
+				t_1.place(x=570,y=80)
+				cancel.place(x=665,y=80)
+				t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
+				t.place(x=825,y=80)
+				called_2=root.after(time,phone_alert)
+				main_pros()
+			if ques_2=='no':
+				updated=datetime.now().strftime('%r')
+				timee=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r')
+				messagebox.showinfo('Info',f'Time Set At {updated} And You Will Get A Sms At {timee}')
+				t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
+				t_1.place(x=570,y=80)
+				cancel.place(x=665,y=80)
+				t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
+				t.place(x=825,y=80)
+				called_2=root.after(time,phone_alert)
+				main_pros()
 		if Selected_Val==2:
-			t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
-			cancel.place(x=665,y=80)
-			print(time)
-			t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
-			t_1.place(x=570,y=80)
-			t.place(x=825,y=80)
-			called_3=root.after(time,notification_)
-			main_pros()
+			ques=messagebox.askquestion('Info','App Will Hide It self Do You Want To Hide it?')
+			if ques=='yes':
+				updated=datetime.now().strftime('%r')
+				timee=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r')
+				messagebox.showinfo('Info',f'Time Set At {updated} And You Will Get A Sms At {timee}')
+				root.withdraw()
+				t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
+				cancel.place(x=665,y=80)
+				t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
+				t_1.place(x=570,y=80)
+				t.place(x=825,y=80)
+				called_3=root.after(time,notification_)
+				main_pros()
+			if ques=='no':
+				updated=datetime.now().strftime('%r')
+				timee=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r')
+				messagebox.showinfo('Info',f'Time Set At {updated} And You Will Get A Sms At {timee}')
+				t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
+				cancel.place(x=665,y=80)
+				t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
+				t_1.place(x=570,y=80)
+				t.place(x=825,y=80)
+				called_3=root.after(time,notification_)
+				main_pros()
 def task_value():
 	global check
 	check=False
@@ -186,7 +241,6 @@ root.protocol('WM_DELETE_WINDOW',x)
 pro_1=Progressbar(root,length=250)
 pro_1.place(x=600,y=60)
 dat=StringVar()
-print(sec_value)
 l=ttk.Label(root,text='Progress Of Your Remind',font=('Time',10))
 l.place(x=660,y=30)
 menus = Menu(root)
@@ -225,23 +279,27 @@ set_task=ttk.Button(root,text='Set Remind',command=task_value)
 set_task.place(x=385,y=340,)
 update=ttk.Button(root,text='Click Me For Update Your Old Remind!',command=update_task)
 cancel=ttk.Button(root,text='Cancel The Remaind',command=cancel)# None speelings,study today.
-HEAd=ttk.Label(root,text="""From Now, At When Do You Want To Get Your Reminder? 
-	     Set From Down Below""",font=('times',13))
+HEAd=ttk.Label(root,text="""After how long did you need a reminder from now?
+	Set From Down Below""",font=('times',13))
 HEAd.pack()
-mainloop()
+mainloop()# check at 1:20 am notifaction is send!
 # End!
 # CREATE bUTTON fOR  FOR CREATING NEW reminder
 # use elif when there is a chance to get both satement true
-
 # a softwarre that can short english sentence!
 # use cd to switch in different folders use ; to add diffrent paths in one varible!!,a website that can load webpages faster!!!
 # create bakend of alerts
-
 # push
 # add millseond option.
-
 # create countdown timer is this app.
 # create new reminder option.
 # buy a voice api,sms api
 # push this one again.
 # clean github repo
+# check reminder app is sending notifaction in a hour
+# run tkinter in background when pc/laptop is turing on
+# check all repos working fine.
+# buy a voice api and create that api sayable
+# check all projects and repos have no bugs!
+# pythonw run remainder app.py
+# tommrow task create new reminder option.

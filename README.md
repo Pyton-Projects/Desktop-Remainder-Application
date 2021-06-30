@@ -1,10 +1,1 @@
-to execute this app when you pc/latop is in hibernate or sleep use:
-1.open Task Sheduler
-
-2.create a new task
-
-3.then locate the app to task sheduler
-
-4.you are good to go!
-
-if a error occured then, mail me:rishigithub1@gmail.com
+to use this app when your pc/laptop in hibernate use:https://towardsdatascience.com/automate-your-python-scripts-with-task-scheduler-661d0a40b279

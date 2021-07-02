@@ -15,14 +15,18 @@ root.set_theme('arc')
 min_value=IntVar()
 sec_value=IntVar()
 hour_value=IntVar()
+t_1=ttk.Label(root)
+t=ttk.Label(root)
 def title_your_reminder():
 	global title
 	title=simpledialog.askstring(title='Title',prompt='Title Of Your Reminder')
 	if ques=='no':
-		t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
+		global t_1
+		global t
+		t_1.config(text=datetime.now().strftime('%r'))
+		t.config(text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
 		t_1.place(x=570,y=80)
 		cancel_.place(x=665,y=80)
-		t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
 		t.place(x=825,y=80)
 	if ques=='yes':
 		pass
@@ -43,14 +47,21 @@ def ask_phone_number():
 	global phone_number
 	phone_number=simpledialog.askstring(title='Phone Number',prompt='Enter Your Phone Number (With Contury Code Incuded)')
 	if ques=='no':
-		t_1=ttk.Label(root,text=datetime.now().strftime('%r'))#HIDE TH AUTH_TOKEN
+		global t_1
+		global t
+		t_1.config(text=datetime.now().strftime('%r'))
+		t.config(text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
 		t_1.place(x=570,y=80)
-		cancel.place(x=665,y=80)
-		t=ttk.Label(root,text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
+		cancel_.place(x=665,y=80)
+		t_1.config(text=datetime.now().strftime('%r'))
+		t.config(text=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r'))
 		t.place(x=825,y=80)
 	if ques=='yes':
 		pass
 def sms_alert():
+	cancel_.place(x=0,y=54444)
+	t_1.place(x=3333333333)
+	t.place(x=22222)
 	root.deiconify()
 	pro_1.stop()
 	set_.config(command=reminder)
@@ -60,6 +71,7 @@ def sms_alert():
 	try:
 		if check==False:
 			c.messages.create(body=F"Hey! user You Need To Do {task_value_} At This Time.",from_='+19563985957',to=phone_number)
+
 		if check==True:
 			c.messages.create(body=F"Hey! user You Need To Do {new_task} At This Time.",from_='+19563985957',to=phone_number)
 	except Exception as e:
@@ -74,25 +86,26 @@ def sms_alert():
 		root.after(time,sms_alert)
 
 def phone_alert():
-
+	cancel_.place(x=0,y=54444)
+	t_1.place(x=3333333333)
+	t.place(x=22222)
 	root.deiconify()
 	pro_1.stop()
 	set_.config(command=reminder)
 	auccont_Id=os.environ.get('MY_SID')
 	auth_token=os.environ.get('MY_AUTH_TOKEN')
 	c=Client(str(auccont_Id),str(auth_token))#say the task
-	try:
-		c.calls.create(from_='+19563985957',url='https://demo.twilio.com/docs/voice.xml',to=phone_number)
+	try: 
+		c.calls.create(from_='+19563985957',url='https://demo.twilio.com',to=phone_number)
 		question=messagebox.askquestion('Info','Do You Want To Repat This Remind again?')#create a new reminder a option.
 		if question=='no':
 			None
 		if question=='yes':
 			root.withdraw()
-			root.after(time,sms_alert)
-	except:
+			root.after(time,phone_alert)
+	except Exception as e:
 		messagebox.showinfo('Info','Check Your Network Connection It Is On Or Off. Or Check The Phone Number You Entered (Phone Number You Entered-{number})'.format(number=phone_number))		
-		
-	
+		print(f'The Error Is:{e}')
 def x():
 	question=messagebox.askquestion('Message','Are You Sure To Quit? Reminder OR reminderS wILL Disabled!'.title())
 	if question=='yes':
@@ -100,6 +113,9 @@ def x():
 	if question=='no':
 		None
 def notification_():
+	cancel_.place(x=0,y=54444)
+	t_1.place(x=3333333333)
+	t.place(x=22222)
 	try:
 		root.deiconify()
 		set_.config(command=reminder)
@@ -123,7 +139,7 @@ def notification_():
 		if question=='yes':
 			root.withdraw()
 			root.after(time,notification_)
-	 #complete this option 
+	
 	except:
 		pass
 
@@ -132,48 +148,43 @@ def info():
 def main_pros():
 	l.place(x=660,y=30)
 	sez=(min_value.get())
-	for_mula=sez*600# number genereter
+	for_mula=sez*600
 	sez_1=(sec_value.get())
-	for_mula_1=sez_1*10# create a stick man animtion!
+	for_mula_1=sez_1*10
 	sez_2=(hour_value.get())
 	for_mula_2=sez_2*6000
-	pro_1['mode']='determinate'# create top level a python program that can short english sentence
+	pro_1['mode']='determinate'
 	pro_1['value']=1000
 	pro_1.start(for_mula+for_mula_1+for_mula_2)
 	root.update()
 def info1():
-	messagebox.showinfo('Message','Another Remind Is Running Do You Want To Set Another reminder? If Yes Then Go To File Menu Then Click On New reminder Option.')
-def cancel():#push this aganin
+	messagebox.showinfo('Message','Another Remind Is Running... Please Wait Some Time Till The Running Remind Not Remind You!')
+def cancel():
 	pro_1.stop()
-	global None_11
-	None_11=True
 	if Selected_Val==0:
 		root.after_cancel(called_1)
 		set_.config(command=reminder)
-		t_1.config(text='')
-		t.config(text='')
-		cancel__.place(x=0,y=54444)	
+		cancel_.place(x=0,y=54444)
+		t_1.place(x=3333333333)
+		t.place(x=22222)
 		messagebox.showinfo('Info','Canceled The Reminder!!')
+
 	if Selected_Val==1:
 		root.after_cancel(called_2)
 		set_.config(command=reminder)
-		try:
-			t_1.config(text='')
-			t.config(text='')
-			cancel.place(x=0,y=54444)
-			messagebox.showinfo('Info','Canceled The Reminder!!')
-		except:
-			pass
+		cancel_.place(x=0,y=54444)
+		t_1.place(x=3333333333)
+		t.place(x=22222)
+		messagebox.showinfo('Info','Canceled The Reminder!!')
+
 	if Selected_Val==2:
 		root.after_cancel(called_3)
 		set_.config(command=reminder)
-		try:
-			t_1.config(text='')
-			t.config(text='')
-			cancel.place(x=0,y=54444)
-			messagebox.showinfo('Info','Canceled The Reminder!!')
-		except:
-			pass
+		cancel_.place(x=0,y=54444)
+		t_1.place(x=3333333333)
+		t.place(x=22222)
+		messagebox.showinfo('Info','Canceled The Reminder!!')
+
 def reminder():
 	if sec_value.get()==0 and min_value.get()==0 and hour_value.get()==0:
 			messagebox.showinfo('Message','Please Add More Time!')	
@@ -219,6 +230,7 @@ def reminder():
 				timee=(datetime.now()+timedelta(seconds=sec_value.get(),minutes=min_value.get(),hours=hour_value.get())).strftime('%r')
 				messagebox.showinfo('Info',f'Time Set At {updated} And You Will Get A Call At {timee}')
 				called_2=root.after(time,phone_alert)
+				main_pros()
 		if Selected_Val==2:
 			title_your_reminder()
 			if ques=='yes':
@@ -262,10 +274,6 @@ dat=StringVar()
 l=ttk.Label(root,text='Progress Of Your Remind',font=('Time',10))
 l.place(x=660,y=30)
 menus = Menu(root)
-m1 = Menu(menus, tearoff=0)
-m1.add_command(label='New reminder')
-root.config(menu=menus)
-menus.add_cascade(label='File', menu=m1, )
 root.maxsize(900,400)
 root.minsize(900,400)
 min_value=IntVar()
@@ -282,7 +290,7 @@ hour.place(x=340,y=65)
 min_=ttk.Label(root,text='Minutes',font=('Times',13))
 min_.place(x=330,y=100)
 sec_=ttk.Label(root,text='Seconds',font=('Times',13))
-sec_.place(x=330,y=139)# today sutdy-goal!!
+sec_.place(x=330,y=139)
 Task_Identity=ttk.Label(root,text='What shall I remind you about? Write Down Below',font=('Times',11)).place(x=300,y=220)
 start_min=ttk.Spinbox(root,from_=0,to=59,width=3,textvariable=min_value,font=Font(root,family='times',size=15))
 start_min.place(x=400,y=100)
@@ -295,32 +303,7 @@ set_.place(x=375,y=180)
 set_task=ttk.Button(root,text='Set Remind',command=task_value)
 set_task.place(x=385,y=340,)
 update=ttk.Button(root,text='Click Me For Update Your Old Remind!',command=update_task)
-cancel_=ttk.Button(root,text='Cancel The Remaind',command=cancel)# None speelings,study today.
+cancel_=ttk.Button(root,text='Cancel The Remaind',command=cancel)
 HEAd=ttk.Label(root,text="""After how long did you need a reminder from now?
 	Set From Down Below""",font=('times',13)).pack()
-mainloop()# check at 1:20 am notifaction is send!
-# End!
-# CREATE bUTTON fOR  FOR CREATING NEW reminder
-# use elif when there is a chance to get both satement true
-# a softwarre that can short english sentence!
-# use cd to switch in different folders use ; to add diffrent paths in one varible!!,a website that can load webpages faster!!!
-# create bakend of alerts
-# push
-# add millseond option.
-# create countdown timer is this app.
-# create new reminder option.
-# buy a voice api,sms api
-# push this one again.
-# clean github repo
-# check reminder app is sending notifaction in a hour
-# run tkinter in background when pc/laptop is turing on
-# check all repos working fine.
-# buy a voice api and create that api sayable
-# check all projects and repos have no bugs!
-# pythonw run remainder app.py
-# tommrow task create new reminder option.
-# create a website addiction remover extenstion like a person watch youtube for 2+ hour the extenstion will say wait some time you watched youtube soo many time please take a short break!
-# create a option for repating a reminder.
-# create a new reminder option and how to link this python script to task sheduler.
-# check the reminder if this app have bug then fix the bug
-# buy voice api.
+mainloop()
